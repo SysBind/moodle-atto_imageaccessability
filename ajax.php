@@ -31,6 +31,7 @@ define('AJAX_SCRIPT', true);
 
 require_once(__DIR__ . '/../../../../../config.php');
 require_once($CFG->dirroot . '/vendor/autoload.php');
+require_once($CFG->libdir . '/filelib.php');
 require_once($CFG->dirroot . '/repository/url/locallib.php');
 
 $imageurl = required_param('image', PARAM_URL);
@@ -50,7 +51,7 @@ if (!$path) {
     print_error('invalidargorconf');
 }
 // extract relative path components
-$args = explode('/', ltrim($path['path'], '/'));
+$args = explode('/', substr($path['path'], strpos(ltrim($path['path'], '/'), '.php')));
 array_shift($args);
 if (count($args) == 0) { // always at least user id
     print_error('invalidarguments');
