@@ -1,0 +1,8 @@
+{
+    "moodle-atto_imageaccessability-button": {
+        "requires": [
+            "moodle-editor_atto-plugin",
+            "event-valuechange"
+        ]
+    }
+}

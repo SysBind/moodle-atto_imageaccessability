@@ -1,0 +1,13 @@
+{
+	"name" : "sysbind/atto_imageaccessability",
+	"description" : "image load with auto label",
+	"license" : "GPL-3.0",
+	"homepage" : "https://sysbind.co.il",
+	"minimum-stability" : "stable",
+	"require" : {
+		"google/cloud" : "~0.45"
+	},
+	"config" : {
+		"vendor-dir" : "../../../../../vendor"
+	}
+}
