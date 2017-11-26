@@ -26,6 +26,8 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($ADMIN->fulltree) {
     $config = get_config('atto_imageaccessability');
+    $settings->add(new admin_setting_heading('atto_imageaccessability',
+        get_string('requirement', 'atto_imageaccessability'), get_string('requirementdesc', 'atto_imageaccessability')));
     $settings->add(new admin_setting_configtextarea('atto_imageaccessability/privatekey',
         get_string('privatekey', 'atto_imageaccessability'), get_string('privatekeydesc', 'atto_imageaccessability'), '', PARAM_RAW, 100, 35));
     $settings->add(new admin_setting_configtext('atto_imageaccessability/privatekeyid',

@@ -50,6 +50,8 @@ $string['privatekeyidydesc'] = 'Enter Server key id supply by Google';
 $string['pluginname'] = 'Image Accessability';
 $string['presentationoraltrequired'] = 'Images must have a description, except if the description is marked as not necessary.';
 $string['preview'] = 'Preview';
+$string['requirement'] = 'Requirments';
+$string['requirementdesc'] = 'First you need to configure <a href="https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account" target="new">Google service account</a>';
 $string['saveimage'] = 'Save image';
 $string['serviceaccount'] = 'Service account Name';
 $string['serviceaccountdesc'] = 'The Service account created by Google';

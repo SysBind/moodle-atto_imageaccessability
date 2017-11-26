@@ -50,6 +50,8 @@ $string['privatekeyidydesc'] = 'מזהה מפתח פרטי מסופק על יד�
 $string['pluginname'] = 'תמונה מונגשת';
 $string['presentationoraltrequired'] = 'תמונה חייבת להכיל תאור, אלה אם סומן שהתאור אינו החרכי.';
 $string['preview'] = 'תצוגה מקדימה';
+$string['requirement'] = 'דרישות';
+$string['requirementdesc'] = 'תחילה יש להגדיר <a href="https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account" target="new">Google service account</a>';
 $string['saveimage'] = 'שמור תמונה';
 $string['serviceaccount'] = 'שם חשבון השירות';
 $string['serviceaccountdesc'] = 'שם חשבון השרות מסופק על ידי Google';
