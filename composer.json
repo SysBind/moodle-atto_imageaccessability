@@ -5,7 +5,7 @@
 	"homepage" : "https://sysbind.co.il",
 	"minimum-stability" : "stable",
 	"require" : {
-		"google/cloud" : "~0.45"
+		"google/cloud" : "~0.46"
 	},
 	"config" : {
 		"vendor-dir" : "../../../../../vendor"
