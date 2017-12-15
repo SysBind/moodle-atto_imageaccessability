@@ -26,6 +26,7 @@
 namespace atto_imageaccessability;
 
 use Google\Cloud\Vision\VisionClient;
+use Google\Cloud\Translate\TranslateClient;
 
 define('AJAX_SCRIPT', true);
 
@@ -98,29 +99,36 @@ $privatekeyid = $config->privatekeyid;
 $privatekey = $config->privatekey;
 $serviceaccount = $config->serviceaccount;
 $minscore = $config->minscore / 100;
-
-$vision = new VisionClient([
-            'projectId' => $client,
-            'keyFile' => array(
-                'type' => 'service_account',
-                'project_id' => $client,
-                'private_key_id' => $privatekeyid,
-                'private_key' => $privatekey,
-                'client_email' => "$serviceaccount@$client.iam.gserviceaccount.com",
-                'client_id' => $clientid,
-                'auth_uri' => 'https://accounts.google.com/o/oauth2/auth',
-                'token_uri' => 'https://accounts.google.com/o/oauth2/token',
-                'auth_provider_x509_cert_url' => 'https://www.googleapis.com/oauth2/v1/certs',
-                'client_x509_cert_url' => "https://www.googleapis.com/robot/v1/metadata/x509/$serviceaccount%40$client.iam.gserviceaccount.com",
-            ),
-        ]);
+$creditional = [
+    'projectId' => $client,
+    'keyFile' => [
+        'type' => 'service_account',
+        'project_id' => $client,
+        'private_key_id' => $privatekeyid,
+        'private_key' => $privatekey,
+        'client_email' => "$serviceaccount@$client.iam.gserviceaccount.com",
+        'client_id' => $clientid,
+        'auth_uri' => 'https://accounts.google.com/o/oauth2/auth',
+        'token_uri' => 'https://accounts.google.com/o/oauth2/token',
+        'auth_provider_x509_cert_url' => 'https://www.googleapis.com/oauth2/v1/certs',
+        'client_x509_cert_url' => "https://www.googleapis.com/robot/v1/metadata/x509/$serviceaccount%40$client.iam.gserviceaccount.com",
+    ],
+];
+$vision = new VisionClient($creditional);
+$translate = new TranslateClient($creditional);
 $options[] = 'LABEL_DETECTION';
 $image = $vision->image($file->get_content_file_handle(), $options);
 $labels = $vision->annotate($image)->labels();
 $anotations = array();
+$lang = substr(get_string('locale', 'langconfig'),0,2);
 foreach ($labels as $label) {
     if ($label->score() >= $minscore) {
-        $anotations[] = $label->description();
+        if($lang == 'en'){
+            $anotations[] = $label->description();
+        } else {
+            $anotations[] = $translate->translate($label->description(),
+                ['target' => $lang])['text'];
+        }
     }
 }
 echo $OUTPUT->header();
